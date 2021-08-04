@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang=en>
+    <head>
+        <meta charset="UTF-8" />
+        <title>My first JavaScript page</title>
+        <link rel="stylesheet" href="/css/site.css">
+    </head>
+
+    <body>
+        <h1>Greeting's !!!</h1>
+
+        <button onclick="addColoredBlock('red')">Red</button>
+        <button onclick="addColoredBlock('blue')">Blue</button>
+        <button id="greenBtn">Green</button>
+        
+        <div id="content">
+
+        </div>
+
+        <script>
+            document.body.style.backgroundColor = "lightgrey";
+
+            var myContent = document.getElementById("content");
+            
+            myContent.style.height = "300px";
+            myContent.style.width = "300px";
+            myContent.style.backgroundColor = "white";
+
+            function addColoredBlock(colorTo) 
+            {
+                let newBlock = document.createElement("div");
+                //className changes everything and it all the class names are as a long string
+                //classList just adds on and each class name is a separate entity
+                newBlock.classList.add("block")
+
+                switch (colorTo) {
+                    case 'green':
+                        newBlock.classList.add("green")
+                        break;
+                    case 'red':
+                        newBlock.classList.add("red")
+                        break;
+                    case 'blue':
+                        newBlock.classList.add("blue")
+                        break;
+                    default:
+                        break;
+                }
+
+                myContent.appendChild(newBlock);
+            }
+
+            /*If the function we want to use have a parameter we need to use a special trick 
+            because in addEventListener we don't use () we only use the function name. */
+            document
+                .getElementById("greenBtn")
+                .addEventListener("click",  function() {
+                    addColoredBlock("green")
+                });
+
+            /*
+                document
+                .getElementById("greenBtn")
+                .addEventListener("click", () => { 
+                    changeToBackgroundColor("green")
+                });
+            */
+
+        </script>
+    </body>
+</html>
